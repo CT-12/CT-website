@@ -1,0 +1,46 @@
+/* 美化 blockquote 作为备注框 */
+blockquote {
+    background: #f9f9f9; /* 浅灰背景 */
+    border-left: 6px solid #007bff; /* 蓝色左边框 */
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+}
+
+/* 让 blockquote 的文字更好看 */
+blockquote p {
+    margin: 0;
+}
+
+/* 引号装饰 */
+blockquote::before {
+    content: "“";
+    font-size: 40px;
+    color: #007bff;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    font-weight: bold;
+}
+
+blockquote::after {
+    content: "”";
+    font-size: 40px;
+    color: #007bff;
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+    font-weight: bold;
+}
+
+/* 响应式优化 */
+@media (max-width: 600px) {
+    blockquote {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}

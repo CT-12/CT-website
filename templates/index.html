@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS start-->
+     <link rel="stylesheet" href="/static/css/all.css">
+    <!-- CSS end-->
+     <!-- Google font start-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+     <!-- Google font end-->
+    <title>{{ .Title }}</title>
+    <!-- Icon start -->
+     <link rel="shortcut icon" href="/static/favicon.ico">
+    <!-- Icon end -->
+</head>
+<body>
+<div class="grid-container">
+
+
+   {{ template "sidebar.html" }}
+
+
+    <div class="main-content">
+        <div class="card-container">
+            {{ range $Item := .Items }}
+                {{ template "card.html" $Item }}
+            {{ end }}
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

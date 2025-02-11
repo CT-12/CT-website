@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS start-->
+    <link rel="stylesheet" href="/static/css/all.css">
+    <link rel="stylesheet" href="/static/css/article.css">
+    <link rel="stylesheet" href="/static/css/blockquote.css">
+    <!-- Highlight.js 样式（更换不同的主题） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">    <!-- CSS end-->
+    <!-- CSS end--> 
+    <!-- Google font start-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+    <!-- Google font end-->
+    <title>CT's Website - {{ .Topic }}</title>
+</head>
+<body>
+<div class="content-container">
+    <div class="article-title">
+        <p>{{ .Title }}</p>
+    </div>
+    <div class="article-content">
+        <p>{{ .Content }}</p>
+    </div>
+</div>
+</body>
+</html>
+
+<!-- Highlight.js 讓 Code Block 自動上色 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>

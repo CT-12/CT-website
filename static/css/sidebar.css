@@ -1,0 +1,42 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 50px; /* 元素之間的間距 */ 
+}
+
+.sidebarList {
+    display: flex;
+    flex-direction: column;
+    /* 垂直排列 */
+    align-items: center;
+    gap: 20px;
+    /* 元素之間的間距 */ 
+}
+  
+.sidebarItem:hover, .sidebarItem:visited {
+    cursor: pointer;
+    /*背景漸變*/
+    background: linear-gradient(to right, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+    /*背景漸變色大小*/
+    background-size: 400%;
+    /*
+    將區塊?的文字作為裁剪範圍向外裁剪，
+    文字的背景就是區塊的背景，
+    文字之外的區域都會被裁剪掉。
+    需要搭配color:
+    簡單來說就是讓文字有流光效果而不是背景
+    */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: streamer 8s infinite; 
+}
+
+/*定義動畫*/
+@keyframes streamer {
+    100% {
+        /*背景位置*/
+        background-position: -400% 0; 
+    } 
+}
