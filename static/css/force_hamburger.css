@@ -1,0 +1,46 @@
+/* 
+這個檔案是用來強制啟用漢堡選單的，不論螢幕大小
+一般只有在手機版螢幕大小才會有漢堡選單，但有歇頁面想要不論螢幕大小都顯示漢堡選單
+
+這個檔案請搭配 {{ template "sidebar.html" }} 一起服用
+
+E.g. XXX.html
+
+<head>
+    <link rel="stylesheet" href="/static/css/force_hamburger.css">
+</head>
+<body>
+    {{ template "sidebar.html" }}
+</body>
+*/
+
+
+/* 為了讓 sidebar 在 article page 內不管什麼螢幕大小都能夠縮成漢堡 */
+/* 側邊欄樣式 */
+.sidebar {
+    display: none !important;
+}
+
+.sidebar.active {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 20px !important;
+    gap: 50px !important; /* 元素之間的間距 */ 
+}
+.hamburger {
+    position: fixed !important;
+    top: 20px !important;
+    left: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+    background: rgba(0, 0, 0, 0.3) !important; /* 半透明黑色背景 */
+    border-radius: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important; /* 漢堡線條間距 */
+    cursor: pointer !important;
+    z-index: 1000 !important; /* 確保顯示在最上方 */
+    transition: background 0.3s ease, transform 0.2s !important;
+}
