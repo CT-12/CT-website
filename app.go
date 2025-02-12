@@ -18,5 +18,5 @@ func main() {
 	// 註冊路由
 	routes.RegisterRoutes(r)
 
-	r.Run(":8080")
+	r.Run()
 }

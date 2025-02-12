@@ -1,12 +1,29 @@
-.card {
-    display: block;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-    width: 80%;
-    padding: 20px;
-    transition: transform 0.2s, box-shadow 0.2s; 
+/* 小於 768px：手機版 */
+@media (max-width: 768px) {
+    .card {
+        display: block;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        width: 90%;
+        padding: 20px;
+        transition: transform 0.2s, box-shadow 0.2s;  
+    }
 }
+
+/* 大於 769px：一般 */
+@media (min-width: 769px) {
+    .card {
+        display: block;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        width: 80%;
+        padding: 20px;
+        transition: transform 0.2s, box-shadow 0.2s; 
+    }
+}
+
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.15); 

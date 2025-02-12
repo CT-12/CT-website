@@ -22,14 +22,18 @@
     <title>CT's Website - {{ .Topic }}</title>
 </head>
 <body>
-<div class="content-container">
-    <div class="article-title">
-        <p>{{ .Title }}</p>
+    
+    <!-- Sidebar -->
+     {{ template "sidebar.html" . }}
+
+    <div class="content-container">
+        <div class="article-title">
+            <p>{{ .Title }}</p>
+        </div>
+        <div class="article-content">
+            <p>{{ .Content }}</p>
+        </div>
     </div>
-    <div class="article-content">
-        <p>{{ .Content }}</p>
-    </div>
-</div>
 </body>
 </html>
 

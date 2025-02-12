@@ -1,8 +1,26 @@
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 50px; /* 元素之間的間距 */ 
+/* 小於 768px：手機版 */
+@media (max-width: 768px) {
+    /* 側邊欄樣式 */
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar.active {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 50px; /* 元素之間的間距 */ 
+    }
+}
+
+/* 大於 769px：一般 */
+@media (min-width: 769px) {
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 50px; /* 元素之間的間距 */ 
+    }
 }
 
 .sidebarList {

@@ -1,0 +1,63 @@
+/* 小於 768px：手機版 */
+@media (max-width: 768px) {
+    /* 漢堡選單樣式 */
+    .hamburger {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        background: rgba(0, 0, 0, 0.3); /* 半透明黑色背景 */
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px; /* 漢堡線條間距 */
+        cursor: pointer;
+        z-index: 1000; /* 確保顯示在最上方 */
+        transition: background 0.3s ease, transform 0.2s;
+    }
+
+    /* 漢堡選單 hover 效果 */
+    .hamburger:hover {
+        background: rgba(0, 0, 0, 0.5); /* 變更透明度 */
+        transform: scale(1.1); /* 放大一點點 */
+    }
+
+    /* 漢堡選單的線條 */
+    .hamburger span {
+        width: 30px;
+        height: 4px;
+        background: white;
+        border-radius: 4px;
+        transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    }
+
+    /* 漢堡選單的開關狀態 */
+    /* ---- 變成 >_ 的動畫 ---- */
+    /* 第一條線：變成 `>` */
+    .hamburger.active span:nth-child(1) {
+        width: 16px; /* 讓它變短 */
+        transform: translateX(-6px) translateY(8px) rotate(45deg); /* 向左移動 6px 向下移動 8px 順時鐘旋轉 45度 傾斜變成 `>` */
+    }
+    
+    /* 第二條線：變成 `_` */
+    .hamburger.active span:nth-child(2) {
+        width: 16px; /* 讓它變成 `_` */
+        transform: translateX(-6px) translateY(6px) rotate(-45deg); /* 向左移動 6px 向下移動 6px 逆時鐘旋轉 45度 傾斜變成 `>`*/
+    }
+    
+    /* 第三條線：隱藏 */
+    .hamburger.active span:nth-child(3) {
+        width: 20px;
+        transform: translateX(5px); /* 向右移動 5px */
+    }
+}
+
+/* 大於 769px：一般 */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+}
