@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static//css/force_hamburger.css">
+    <!-- Icon start -->
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <!-- Icon end -->
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    {{ template "sidebar.html" }}
+
+    <!-- Encrypt Section -->
+    <div class="container-sm my-5 pt-5">
+        <h1 class="mb-3">Encrypt</h1>
+        <hr>
+        <input type="file" id="fileInput" class="form-control mb-3">
+        <!-- Input text -->
+        <label for="input-text">Plaintext :</label>
+        <textarea class="form-control mb-3" rows="10" id="input-text" placeholder="上傳文字檔或是直接將內容輸入在這裡"></textarea>
+        <!-- Password -->
+        <label for="password">Password :</label>
+        <input type="password" class="form-control mb-3" id="password">
+        <!-- Encrypt button -->
+        <button type="button" class="btn btn-dark mb-3" onclick="encryptText()">Encrypt</button>
+        <!-- Encrypt text -->
+        <label for="encrypted-text">Encrypted Text :</label>
+        <textarea class="form-control mb-3" id="encrypted-text" readonly></textarea>
+        <button type="button" class="btn btn-primary" onclick="copyText()">Copy</button>
+    </div>
+
+    <!-- Decrypt Section -->
+    <div class="container-sm my-5">
+        <h1 class="mb-3">Decrypt</h1>
+        <hr>
+        <label for="encrypted-text">Encrypted Text :</label>
+        <textarea class="form-control mb-3" id="decrypt-input"></textarea>
+        <!-- Password -->
+        <label for="password-decrypt">Password :</label>
+        <input type="password" class="form-control mb-3" id="password-decrypt">
+        <!-- Decrypt button -->
+        <button type="button" class="btn btn-dark mb-3" onclick="decryptText()">Decrypt</button>
+        <!-- Decrypt text -->
+        <label for="decrypted-text">Decrypted Text :</label>
+        <textarea class="form-control" rows="10" id="decrypted-text" readonly></textarea>
+        <!-- Clear button -->
+        <button type="button" class="btn btn-primary mt-3" onclick="clearAll()">Clear All</button>
+    </div>
+
+    <script src="/static/js/projects/crypto/crypto.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
