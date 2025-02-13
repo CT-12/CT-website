@@ -1,15 +1,35 @@
 /* 小於 768px：手機版 */
 @media (max-width: 768px) {
     /* 側邊欄樣式 */
+    /* 初始狀態：隱藏且完全不佔空間 */
     .sidebar {
-        display: none;
-    }
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 250px; /* 側邊欄寬度 */
+        height: 100vh; /* 滿版高度 */
+        background: white; /* 背景色，可自行調整 */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 
-    .sidebar.active {
         display: flex;
         flex-direction: column;
         padding: 20px;
-        gap: 50px; /* 元素之間的間距 */ 
+        gap: 50px; /* 元素之間的間距 */
+        
+        /* 初始狀態：完全隱藏 */
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        
+        /* 讓它在畫面外不佔空間 */
+        pointer-events: none;
+    }
+
+    /* 點擊後的狀態：緩慢滑入 */
+    .sidebar.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto; /* 啟用點擊事件 */
     }
 }
 

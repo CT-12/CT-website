@@ -37,6 +37,9 @@
     }
 }
 
+body{
+    background-color: white;
+}
   
 pre {
     background-color: #282c34;
