@@ -36,6 +36,10 @@ func RegisterArticleRoutes(r *gin.RouterGroup) {
 				c.JSON(http.StatusInternalServerError, gin.H{"Fail to parse markdown": err.Error()})
 				return
 			}
+			
+			if frontMatter.Draft == true {
+				continue 
+			}
 
 			// 建立 Article 物件
 			article := internal.Article{
