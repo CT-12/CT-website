@@ -1,9 +1,10 @@
-<!-- 
-date: 2024-01-19
-update: 2024-01-19
-Tag: 
-    - Rust
--->
+---
+create_at: 2024.01.19
+update_at: 2024.01.19
+draft: false
+tags: 
+ - Rust
+---
 
 # Cargo 創建專案
 

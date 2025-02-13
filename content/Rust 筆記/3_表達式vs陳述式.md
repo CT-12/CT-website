@@ -1,9 +1,10 @@
-<!-- 
-date: 2024-01-19
-update: 2024-01-19
-Tag: 
-    - Rust
--->
+---
+create_at: 2024.01.19
+update_at: 2024.01.19
+draft: false
+tags: 
+ - Rust
+---
 
 在 Rust 中，**表達式**（expression）和**陳述式**（statement）是兩種基本的程式構造，它們在語法和行為上的區別如下：
 

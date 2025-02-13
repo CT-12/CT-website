@@ -1,9 +1,10 @@
-<!-- 
-date: 2024-01-18 
-update: 2024-01-19
-Tag: 
-    - Rust
--->
+---
+create_at: 2024.01.18
+update_at: 2024.01.19
+draft: false
+tags: 
+ - Rust
+---
 
 # Mac
 

@@ -3,22 +3,12 @@ package internal
 import (
 	"bytes"
 	"html/template"
-	"os"
-	"path/filepath"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 )
 
-func ConvertMdToHtml(topic string, article string) (template.HTML, error) {
-	md_path := filepath.Join(CONTENT_DIR, topic, article)
-
-	// 讀取 Markdown 檔案
-	md_content, err := os.ReadFile(md_path)
-	if err != nil {
-		return "", err
-	}
-
+func ConvertMdToHtml(md_content MarkdownContent) (template.HTML, error) {
 	// 轉換 Markdown 到 HTML
 	var buf bytes.Buffer
 
@@ -28,7 +18,7 @@ func ConvertMdToHtml(topic string, article string) (template.HTML, error) {
 		), 
 	)
 
-	if err := converter.Convert(md_content, &buf); err != nil {
+	if err := converter.Convert([]byte(md_content), &buf); err != nil {
 		return "", err
 	}
 

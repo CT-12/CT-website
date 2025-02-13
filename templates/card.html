@@ -2,6 +2,14 @@
     <link rel="stylesheet" href="/static/css/card.css">
 </header>
 
+<!--
+with .CreateAt 只有當 .CreateAt 存在時才會執行內部區塊，避免 Hugo 遇到 nil 時報錯。
+$.UpdateAt 使用 $ 來引用最外層的變數，因為 with 內部會改變 . 的作用範圍，使 .UpdateAt 變成 CreateAt 的作用範圍內，
+導致 UpdateAt 變成未定義的變數。所以要用 $.UpdateAt 來指向原始 .（即最外層的變數）。 
+-->
 <a href="{{ .Path }}" class="card">
     <h1>{{ .Name }}</h1>
+    {{ if .CreateAt }}
+        <p>Create at: {{ .CreateAt }} / Update at: {{ .UpdateAt }}</p>
+    {{ end }}
 </a>

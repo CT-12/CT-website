@@ -11,11 +11,15 @@ var (
 type Topic struct {
 	Name string
 	Path string
+	CreateAt string
+	UpdateAt string
 }
 
 type Article struct {
 	Name string
 	Path string
+	CreateAt string
+	UpdateAt string
 }
 
 func GetTopics() ([]string, error) {

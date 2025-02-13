@@ -1,11 +1,12 @@
-<!-- 
-date: 2024-01-20
-update: 2024-01-20
-Tag: 
-    - Rust
-    - Package
-    - Crate
--->
+---
+create_at: 2024.01.20
+update_at: 2024.01.20
+draft: false
+tags: 
+ - Rust
+ - Package
+ - Crate
+---
 
 # Package
 

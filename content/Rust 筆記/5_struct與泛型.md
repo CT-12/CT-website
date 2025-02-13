@@ -1,11 +1,12 @@
-<!-- 
-date: 2024-01-22
-update: 2024-01-22
-Tag: 
-    - Rust
-    - Struct
-    - 泛型
--->
+---
+create_at: 2024.01.22
+update_at: 2024.01.22
+draft: false
+tags: 
+ - Rust
+ - Struct
+ - 泛型
+---
 
 # Struct 與 泛型
 

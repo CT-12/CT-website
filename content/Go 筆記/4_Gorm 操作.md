@@ -1,11 +1,12 @@
-<!-- 
-date: 2024-01-29
-update: 2024-01-29
-Tag: 
-    - Go
-    - Gorm
-    - Database
--->
+---
+create_at: 2024.01.29
+update_at: 2024.01.29
+draft: false
+tags: 
+ - Go
+ - Gorm
+ - Database
+---
 
 # Gorm
 
