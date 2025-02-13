@@ -10,6 +10,7 @@ import (
 
 func RegisterIndexRoutes(r *gin.RouterGroup) {
 	// 首頁
+	// GET: /
 	r.GET("/", func(c *gin.Context) {
 		var topics []internal.Topic
 
@@ -31,5 +32,11 @@ func RegisterIndexRoutes(r *gin.RouterGroup) {
 			"Title": "CT's website",
 			"Items": topics,
 		})
+	})
+
+	// About me 頁面
+	// GET: /aboutme
+	r.GET("/aboutme", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "aboutme.html", gin.H{})
 	})
 }

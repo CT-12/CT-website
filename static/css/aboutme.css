@@ -1,0 +1,80 @@
+/* 全域樣式 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+}
+
+/* 標題區 */
+header {
+    background-color: #222;
+    color: white;
+    padding: 40px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #bbb;
+}
+
+/* 社交連結 */
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* 內容區 */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: left;
+}
+
+h2 {
+    color: #222;
+    border-bottom: 2px solid #555;
+    padding-bottom: 5px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+/* 連結樣式 */
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 頁腳 */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+}
