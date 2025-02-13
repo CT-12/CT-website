@@ -1,0 +1,599 @@
+<!DOCTYPE html> 
+<html>  
+<head>	
+	<title> 
+			Permutations and Combinations by Chia-Tai Lee
+	</title>
+	<link rel="stylesheet", type="text/css" href="Style/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static//css/force_hamburger.css">
+	<script src="/static/js/projects/combination_caculator/combination_caculator.js"></script>
+     <!-- Icon start -->
+     <link rel="shortcut icon" href="/static/favicon.ico">
+    <!-- Icon end -->
+</head>
+<body>	
+
+    {{ template "sidebar.html" }}
+
+	<div class="container-fluid p-5 bg-dark text-white text-center">
+		<h1>Welcome to my calculator !</h1>
+		<p class="text-end">By Chia-Tai Lee</p>
+	</div>	
+	<nav class="navbar navbar-expand-sm" style="background-color:lightgray" >
+		<div class="container-fluid">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#Basic">Basic</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#Advance">Advance</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<table id="Basic" class="table table-striped table-bordered t">	
+		<tr class="table-primary">
+			<th>
+				Formula
+			</th>
+			<th>
+				<label><i>m</i> = </label>
+				<input type="number" id="m" value="7" min="0">
+				<label><i>n</i> = </label>
+				<input type="number" id="n" value="3" min="0">
+			</th>
+			<th>
+				Order relevant
+			</th>
+			<th>
+				Repetition
+			</th>				
+			<th>
+				Memo
+			</th>		
+			<th>
+				<button type="button" class="btn btn-outline-dark" onclick="computeAll()">Compute All</button>
+			</th>						
+		</tr>
+		<tr>
+			<td>
+				<label><i>P</i>(<i>m</i>, <i>n</i>)</label>
+			</td>
+			<td>
+				<span id="resPermutation"></sapn>
+			</td>
+			
+			<td>
+				yes
+			</td>
+			<td>
+				no
+			</td>
+			<td align="left">
+				# Permutations of size <i>n</i> from <i>m</i> distinct objects <br>
+				從m個不同物件取n個的方法數
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="clickPerm()">Permutation</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label><i>C</i>(<i>m</i>, <i>n</i>)</label>
+			</td>
+			<td>
+				<span id="resCombination"></span>
+			</td>
+			
+			<td>
+				no
+			</td>
+			<td>
+				no
+			</td>
+			<td align="left">
+				# Selections/Combinations of size <i>r</i> from <i>n</i> distinct objects <br>
+				可以從m個不同物件中挑選n個
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="clickComb()">Combination</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>C<sub>n</sub></i> = 
+				<math xmlns='http://www.w3.org/1998/Math/MathML'> <!-- 這段<math></math>是利用網頁生成的, 他可以將手寫的方程式自動轉成MathML的code Url: https://webdemo.myscript.com/views/math/index.html# -->
+					<mfrac>
+					  <mrow>
+						<mn> 1 </mn>
+					  </mrow>
+					  <mrow>
+						<mi> <i>n</i> </mi>
+						<mo> + </mo>
+						<mn> 1 </mn>
+					  </mrow>
+					</mfrac>
+				  </math>
+				   * <i>C</i>(2<i>n</i>,<i>n</i>)
+			</td>
+			<td colspan="3">
+				<span id="catalan_result"></span>
+			</td>
+			<td align="left">
+				The first n <command>catalan numbers.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_catalan()">Catalan numbers</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>T</i><sub><i>n</i></sub> = 
+				<math xmlns='http://www.w3.org/1998/Math/MathML'>
+					<mfrac>
+					  <mrow>
+						<mi> <i>n</i> </mi>
+						<mrow>
+						  <mo> ( </mo>
+							<mi> <i>n</i> </mi>
+							<mo> + </mo>
+							<mn> 1 </mn>
+						  <mo> ) </mo>
+						</mrow>
+					  </mrow>
+					  <mrow>
+						<mn> 2 </mn>
+					  </mrow>
+					</mfrac>
+				  </math>
+			</td>
+			<td colspan="3">
+				<span id="triangular_result"></span>
+			</td>
+			<td align="left">
+				The first n triangluar numbers.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_triangular()">Triangular numbers</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>H</i><sub><i>n</i></sub> = 
+				<math xmlns='http://www.w3.org/1998/Math/MathML'>
+					<munderover>
+					  <mrow>
+						<mo> &#x2211; <!-- n-ary summation --> </mo>
+					  </mrow>
+					  <mrow>
+						<mi> <i>n</i> </mi>
+						<mo> = </mo>
+						<mn> 1 </mn>
+					  </mrow>
+					  <mrow>
+						<mi> &#x221E; <!-- infinity --> </mi>
+					  </mrow>
+					</munderover>
+					<mfrac>
+					  <mrow>
+						<mn> 1 </mn>
+					  </mrow>
+					  <mrow>
+						<mi> <i>n</i> </mi>
+					  </mrow>
+					</mfrac>
+				  </math>
+			</td>
+			<td colspan="3">
+				<span id="harmonic_result"></span>
+			</td>
+			<td align="left">
+				The first n harmonic numbers.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_harmonic()">Harmonic numbers</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>F</i><sub><i>n</i></sub> = <i>F</i><sub><i>n</i>-1</sub> + <i>F</i><sub><i>n</i>-2</sub>
+			</td>
+			<td colspan="3">
+				<span id="fibonacci_result"></span>
+			</td>
+			<td align="left">
+				The first n fibonacci numbers.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_fibonacci()">Fibonacci numbers.</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>L</i><sub><i>n</i></sub> = <i>L</i><sub><i>n</i>-1</sub> + <i>L</i><sub><i>n</i>-2</sub>
+			</td>
+			<td colspan="3">
+				<span id="lucas_result"></span>
+			</td>
+			<td align="left">
+				The first n lucas numbers.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_lucas()">Lucas numbers.</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>A</i>(<i>m</i>, <i>n</i>)
+			</td>
+			<td colspan="3">
+				<span id="eulerian_result"></span>
+			</td>
+			<td align="left">
+				是從 1 到 m 中正好滿足 n 个元素大於前一个元素 (Eulerian number)
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_eulerian()">Eulerian number</button>
+			</td>
+		</tr>
+	</table>
+
+	<table id="Advance" class="table table-striped table-bordered">
+		<tr class="table-primary">
+			<th>Formula</th>
+			<th>
+				<label><i>m</i> = </label>
+				<input type="number" id="m2" value="7" min="0">
+				<br>
+				<label><i>n</i> = </label>
+				<input type="number" id="n2" value="3" min="0">
+			</th>
+			<th>
+				Distinct objects(m)
+			</th>
+			<th>
+				Distinct containers(n)
+			</th>
+			<th>
+				Some empty containers
+			</th>
+			<th>
+				Interpretation
+			</th>
+			<th>
+				<button type="button" class="btn btn-outline-dark" onclick="compute_all_bonus()">Compute all</button>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<label><i>m<sup>n</sup></i></label>
+			</td>
+			<td>
+				<span id="resArrangement"></span>
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				yes
+			</td>
+			<td align="left">
+				Each of the <i>m</i> distinct object may be distributed into anyf of the <i>n</i> distinct containers.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="clickArra()">Compute</button> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>onto</i>(<i>m</i>, <i>n</i>) <br>
+				= <i>n</i>!<i>S</i>(<i>m</i>, <i>n</i>)
+			</td>
+			<td>
+				<span id="onto_result"></span>
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				no
+			</td>
+			<td align="left">
+				Each of the <i>m</i> distinct object may be distributed onto any of the <i>n</i> distinct containers with no containers empty.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_onto()">Compute</button> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>S</i>(<i>m</i>, <i>1</i>)+<i>S</i>(<i>m</i>, <i>2</i>)+...+<i>S</i>(<i>m</i>, <i>n</i>)
+			</td>
+			<td>
+				<span id="stirling_with_empty_result"></span>
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				no
+			</td>
+			<td>
+				yes
+			</td>
+			<td align="left">
+				m distinct objects onto 1, 2, ..., n identical containers, leaving no container empty <i>S</i>(<i>m</i>, <i>1</i>)+<i>S</i>(<i>m</i>, <i>2</i>)+...+<i>S</i>(<i>m</i>, <i>n</i>)
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_stirling_with_empty()">Compute</button> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i>S</i>(<i>m</i>, <i>n</i>) = 
+				<math display="block" class="tml-display" style="display:block math;">
+					<mrow>
+					  <mfrac>
+						<mn>1</mn>
+						<mrow>
+						  <mi>n</mi>
+						  <mo form="postfix" stretchy="false" rspace="0em">!</mo>
+						</mrow>
+					  </mfrac>
+					  <mrow>
+						<munderover>
+						  <mo movablelimits="false">∑</mo>
+						  <mrow>
+							<mi>k</mi>
+							<mo>=</mo>
+							<mn>0</mn>
+						  </mrow>
+						  <mi>n</mi>
+						</munderover>
+					  </mrow>
+					  <mo form="prefix" stretchy="false">(</mo>
+					  <mo>−</mo>
+					  <mn>1</mn>
+					  <msup>
+						<mo form="postfix" stretchy="false">)</mo>
+						<mi>k</mi>
+					  </msup>
+					  <mstyle displaystyle="false" scriptlevel="0">
+						<mrow>
+						  <mo fence="true">(</mo>
+						  <mfrac linethickness="0px">
+							<mi>n</mi>
+							<mrow>
+							  <mi>n</mi>
+							  <mo>−</mo>
+							  <mi>k</mi>
+							</mrow>
+						  </mfrac>
+						  <mo fence="true">)</mo>
+						</mrow>
+					  </mstyle>
+					  <mo form="prefix" stretchy="false">(</mo>
+					  <mi>n</mi>
+					  <mo>−</mo>
+					  <mi>k</mi>
+					  <msup>
+						<mo form="postfix" stretchy="false">)</mo>
+						<mi>m</mi>
+					  </msup>
+					</mrow>
+				  </math>
+			</td>
+			<td>
+				<span id="stirling_result"></span>
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				no
+			</td>
+			<td>
+				no
+			</td>
+			<td align="left">
+				m distinct objects onto n identical containers, leaving no container empty.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_stirling()">Compute</button> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<math display="block" class="tml-display" style="display:block math;">
+					<mstyle displaystyle="false" scriptlevel="0">
+					  <mrow>
+						<mo fence="true">(</mo>
+						<mfrac linethickness="0px">
+						  <mrow>
+							<mi><i>m</i></mi>
+							<mo>+</mo>
+							<mi><i>n</i></mi>
+							<mo>+</mo>
+							<mo>−</mo>
+							<mn>1</mn>
+						  </mrow>
+						  <mi><i>m</i></mi>
+						</mfrac>
+						<mo fence="true">)</mo>
+					  </mrow>
+					</mstyle>
+				  </math>
+			</td>
+			<td>
+				<span id="resSelectrofn"></span>
+			</td>
+			<td>
+				no
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				yes
+			</td>
+			<td align="left">
+				Ordering food from the view of kitchen(<i>m</i> kids(identical), <i>n</i> foods(distinct))
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="clickSele()">Compute</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<math display="block" class="tml-display" style="display:block math;">
+					<mstyle displaystyle="false" scriptlevel="0">
+					  <mrow>
+						<mo fence="true">(</mo>
+						<mfrac linethickness="0px">
+						  <mrow>
+							<mi><i>m</i></mi>
+							<mo>−</mo>
+							<mn>1</mn>
+						  </mrow>
+						  <mrow>
+							<mi><i>m</i></mi>
+							<mo>−</mo>
+							<mi><i>n</i></mi>
+						  </mrow>
+						</mfrac>
+						<mo fence="true">)</mo>
+					  </mrow>
+					</mstyle>
+				  </math>
+			</td>
+			<td>
+				<span id="combination_repetition_no_empty_result"></span>
+			</td>
+			<td>
+				no
+			</td>
+			<td>
+				yes
+			</td>
+			<td>
+				no
+			</td>
+			<td align="left">
+				Deliver one object to each of the <i>n</i> distinct containers first, then distributued <i>m</i>-<i>n</i> objects to the <i>n</i> containers.
+			</td>
+			<td>
+				<button type="button" class="btn btn-outline-primary" onclick="click_combination_repetition_no_empty()">Compute</button>
+			</td>
+			<tr>
+				<td>
+					<math display="block" class="tml-display" style="display:block math;">
+						<mrow>
+						  <mo form="prefix" stretchy="false">{</mo>
+						  <msubsup>
+							<mrow></mrow>
+							<mrow>
+							  <mi>p</mi>
+							  <mo form="prefix" stretchy="false">(</mo>
+							  <mi>m</mi>
+							  <mo separator="true">,</mo>
+							  <mn>1</mn>
+							  <mo form="postfix" stretchy="false">)</mo>
+							  <mo>+</mo>
+							  <mi>p</mi>
+							  <mo form="prefix" stretchy="false">(</mo>
+							  <mi>m</mi>
+							  <mo separator="true">,</mo>
+							  <mn>2</mn>
+							  <mo form="postfix" stretchy="false">)</mo>
+							  <mo>+</mo>
+							  <mi>.</mi>
+							  <mi>.</mi>
+							  <mi>.</mi>
+							  <mo>+</mo>
+							  <mi>p</mi>
+							  <mo form="prefix" stretchy="false">(</mo>
+							  <mi>m</mi>
+							  <mo separator="true">,</mo>
+							  <mi>n</mi>
+							  <mo form="postfix" stretchy="false">)</mo>
+							  <mo></mo>
+							  <mi>f</mi>
+							  <mi>o</mi>
+							  <mi>r</mi>
+							  <mo></mo>
+							  <mi>n</mi>
+							  <mo>&lt;</mo>
+							  <mi>m</mi>
+							</mrow>
+							<mrow>
+							  <mi>p</mi>
+							  <mo form="prefix" stretchy="false">(</mo>
+							  <mi>m</mi>
+							  <mo form="postfix" stretchy="false">)</mo>
+							  <mo></mo>
+							  <mi>f</mi>
+							  <mi>o</mi>
+							  <mi>r</mi>
+							  <mo></mo>
+							  <mi>n</mi>
+							  <mo>=</mo>
+							  <mi>m</mi>
+							</mrow>
+						  </msubsup>
+						</mrow>
+					  </math>
+				</td>
+				<td>
+					<span id="partition_with_empty_result"></span>
+				</td>
+				<td>
+					no
+				</td>
+				<td>
+					no
+				</td>
+				<td>
+					yes
+				</td>
+				<td align="left">
+					Partition integer <i>m</i> into at most <i>n</i> summands (with some 0 summands, corresponding to empty containers)
+				</td>
+				<td>
+					<button type="button" class="btn btn-outline-primary" onclick="click_partition_with_empty()">Compute</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<i>p</i>(<i>m</i>, <i>n</i>)
+				</td>
+				<td>
+					<span id="partition_result"></span>
+				</td>
+				<td>
+					no
+				</td>
+				<td>
+					no
+				</td>
+				<td>
+					no
+				</td>
+				<td align="left">
+					Patition integer <i>m</i> into exactly <i>n</i> summands (with no container empty)
+				</td>
+				<td>
+					<button tpye="button" class="btn btn-outline-primary" onclick="click_partiton()">Compute</button>
+				</td>
+			</tr>
+		</tr>
+	</table>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

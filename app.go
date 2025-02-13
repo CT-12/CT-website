@@ -10,7 +10,7 @@ func main() {
 	r := gin.Default()
 
 	// 設置 HTML Template 位置
-	r.LoadHTMLGlob("templates/*")
+	r.LoadHTMLGlob("templates/**/*")
 
 	// 設置靜態資源, 例如圖片、CSS、JavaScript 等
 	r.Static("/static", "./static")

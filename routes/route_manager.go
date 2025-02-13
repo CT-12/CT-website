@@ -10,4 +10,7 @@ func RegisterRoutes(r *gin.Engine) {
 	
 	articleRouter := r.Group("/article")
 	RegisterArticleRoutes(articleRouter)
+
+	projectRouter := r.Group("/project")
+	RegisterProjectRoutes(projectRouter)
 }

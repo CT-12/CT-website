@@ -43,6 +43,10 @@
     }
 }
 
+.sidebar {
+    z-index: 999; /* 確保在最上層，但在漢堡選單下面 */
+}
+
 .sidebarList {
     display: flex;
     flex-direction: column;
@@ -77,4 +81,52 @@
         /*背景位置*/
         background-position: -400% 0; 
     } 
+}
+
+/* Dropdown 子選單樣式 */
+.dropdown {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+/* 子選單內容初始隱藏 */
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+    background: white; /* 背景色可調整 */
+    padding: 5px 0;
+    border-radius: 5px; /* 圓角 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+    
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    position: relative; /* 用來加底部線 */
+
+}
+
+/* 每個項目底部加一條線 */
+.dropdown-content a:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 80%; /* 控制線條寬度 */
+    height: 1px;
+    background: lightgray; /* 線條顏色 */
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+}
+
+/* 展開時顯示子選單 */
+.dropdown.active .dropdown-content {
+    display: flex;
 }

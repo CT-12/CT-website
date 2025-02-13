@@ -23,7 +23,14 @@
     <div class="sidebarList">
         <a href="/" class="sidebarItem">Home</a>
         <a href="/aboutme" class="sidebarItem">About me</a>
-        <a href="/" class="sidebarItem">Projects</a>
+        <!-- Projects 可展開 -->
+        <div class="sidebarItem dropdown" onclick="toggleDropdown()">
+            Projects
+            <div class="dropdown-content">
+                <a href="/project/combination_calculator" class="sidebarItem">Combination calculator</a>
+                <a href="/project/crypto" class="sidebarItem">Crypto</a>
+            </div>
+        </div>
     </div>
 </div>
 
