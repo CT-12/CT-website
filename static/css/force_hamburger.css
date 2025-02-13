@@ -23,7 +23,7 @@ E.g. XXX.html
     left: 0;
     width: 250px; /* 側邊欄寬度 */
     height: 100vh; /* 滿版高度 */
-    background: white; /* 背景色，可自行調整 */
+    background: #f5f5fa; /* 背景色，可自行調整 */
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 
     display: flex;
