@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+	"website/internal"
 	"website/routes"
 
 	"github.com/gin-gonic/gin"
@@ -14,6 +16,14 @@ func main() {
 
 	// 設置靜態資源, 例如圖片、CSS、JavaScript 等
 	r.Static("/static", "./static")
+
+	if internal.HasInitErrors() {
+		// Middleware，在每次請求時都會執行。
+		r.Use(func(c *gin.Context) {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": internal.GetInitErrors()})
+			c.Abort() // 終止請求，以免請求進行其他 handler 繼續執行
+		})
+	}
 
 	// 註冊路由
 	routes.RegisterRoutes(r)

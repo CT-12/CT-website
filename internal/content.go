@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"log"
 	"os"
 	"strings"
 )
@@ -29,8 +28,9 @@ type Article struct {
 	Markdown MarkdownContent
 }
 
-
 var Topic2Articles = make(map[string][]Article)
+
+var ContentInitError error
 
 // 取得所有主題的名字
 func GetTopics() ([]string, error) {
@@ -71,7 +71,8 @@ func init(){
 	// 取得所有主題的名字
 	topicNames, err := GetTopics()
 	if err != nil {
-		log.Fatalln(PrintErrorWithLine("Error getting names of topics -> ", err).Error())
+		AddInitError(PrintErrorWithLine("Error getting names of topics -> ", err))
+		return
 	}
 	
 	for _, topicName := range topicNames {
@@ -87,7 +88,8 @@ func init(){
 		// 取得某個主題下的所有文章的名字
 		articleNames, err := GetArticles(topicName)
 		if err != nil {
-			log.Fatalln(PrintErrorWithLine("Error getting names of articles -> ", err).Error())
+			AddInitError(PrintErrorWithLine("Error getting names of articles -> ", err))
+			return 
 		}
 		
 		for _, articleName := range articleNames {
@@ -100,7 +102,8 @@ func init(){
 			filePath := CONTENT_DIR + "/" + topicName + "/" + fileName
 			frontMatter, markdownContent, err := ParseMarkdown(filePath)
 			if err != nil {
-				log.Fatalln(PrintErrorWithLine("Error parsing markdown -> ", err).Error())
+				AddInitError(PrintErrorWithLine("Error parsing markdown -> ", err))
+				return 
 			}
 
 			if frontMatter.Draft == true {
