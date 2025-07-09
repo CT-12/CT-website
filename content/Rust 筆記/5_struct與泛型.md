@@ -1,6 +1,6 @@
 ---
 create_at: 2024.01.22
-update_at: 2024.01.22
+update_at: 2025.07.09
 draft: false
 tags: 
  - Rust
@@ -78,6 +78,103 @@ let p2 = Point {x: 1, y: 1} // 型別是 i32，這個 struct 不可以使用...
 最後我推薦看 [10.1 泛型資料型別
 ](https://rust-lang.tw/book-tw/ch10-01-syntax.html) 裡最下面範例 10-11 以及單型化的部分，可以更好地瞭解泛型的例子。
 
+**補充 1**
+
+前面說到 rust 會在實例化 struct 的時候填入對應的類別。這裡想展開說說實例方法是什麼時候被填入對應的類別的。先給範例：
+
+```rust
+struct Point<X1, Y1>{
+    x: X1,
+    y: Y1,
+}
+
+impl<X1, Y1> Point<X1, Y1> {
+    fn mixup<X2, Y2>(self, other: Point<X2, Y2>) -> Point<X1, Y2> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+
+fn main() {
+    let p = Point { x: 5, y: 10.0 };       // ---- L1
+    let p2 = Point { x: "Hello", y: 'c' }; // ---- L2
+    let p3 = p.mixup(p2);                  // ---- L3
+    println!("p3.x: {}, p3.y: {}", p3.x, p3.y);
+}
+```
+
+程式執行到 `L1` 時，rust 會產生對應的類別的 struct 和方法，也就是：
+
+```rust
+struct Point<i32, f64>{
+    x: i32,
+    y: f64,
+}
+
+impl<i32, f64> Point<i32, f64> {
+    // 現在 X2 和 Y2 還不知道會是什麼類型
+    fn mixup<X2, Y2>(self, other: Point<X2, Y2>) -> Point<i32, Y2> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+```
+
+程式執行到 `L2` 時，rust 會產生對應的類別的 struct 和方法，也就是：
+
+```rust
+struct Point<&'static str, char>{
+    x: &'static str,
+    y: char,
+}
+
+impl<&'static str, char> Point<&'static str, char> {
+    // 現在 X2 和 Y2 還不知道會是什麼類型
+    fn mixup<X2, Y2>(self, other: Point<X2, Y2>) -> Point<&'static str, Y2> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+```
+
+程式執行到 `L3` 時，rust 發現 `p` 使用了 `mixup` 方法，並且傳入了 `p2`，現在他終於知道 `p（Point<i32, f64>`的 `mixup` 方法裡面的 X2 Y2 是什麼類型的，也就是：
+
+```rust
+struct Point<i32, f64>{
+    x: i32,
+    y: f64,
+}
+
+impl<i32, f64> Point<i32, f64> {
+    fn mixup<&'static str, char>(self, other: Point<&'static str, char>) -> Point<i32, char> {
+        Point {
+            x: self.x, // 這裡的 self 是 Point<i32, f64>
+            y: other.y,
+        }
+    }
+}
+```
+
+泛型方法的類型推導大概就是這樣，值得注意的是，如果之後又有一行程式是 `let p4 = p.mixup(p3);`，那 rust 會在產生第二個 `mixup` 方法：
+
+```rust
+impl<i32, f64> Point<i32, f64> {
+    fn mixup<i32, char>(self, other: Point<i32, char>) -> Point<i32, char> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+```
+
+這部分是我推測的，但感覺應該會是這樣。有錯之後會再回來改～
 
 # References
 

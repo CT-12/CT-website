@@ -18,10 +18,10 @@ func main() {
 	r.Static("/static", "./static")
 
 	if internal.HasInitErrors() {
-		// Middleware，在每次請求時都會執行。
+		// Middleware，在每次 request 時都會執行。
 		r.Use(func(c *gin.Context) {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": internal.GetInitErrors()})
-			c.Abort() // 終止請求，以免請求進行其他 handler 繼續執行
+			c.Abort() // 終止請求，以免 request 進入其他 handler 繼續執行
 		})
 	}
 
