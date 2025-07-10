@@ -95,6 +95,7 @@ func init(){
 		for _, articleName := range articleNames {
 			// 萃取出 article 名稱
 			fileName := articleName // E.g. fileName = 1_HelloWorld.md
+			println(fileName)
 			name := strings.Split(fileName, "_")[1] // E.g. name = HelloWorld.md 
 			name = strings.TrimSuffix(name, ".md")  // E.g. name = HelloWorld
 
