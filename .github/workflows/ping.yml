@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: Ping ct website
         run:
-         curl https://ct12.onrender.com > /dev/null
+         curl --head --max-time 1 https://ct12.onrender.com > /dev/null 2>&1
