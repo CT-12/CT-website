@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shorten</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/projects/url_shorten/style.css">
+    <link rel="stylesheet" href="/static/css/force_hamburger.css">
+    <link rel="icon" href="/static/favicon.ico">
+</head>
+<body>
+
+    {{ template "sidebar.html" }}
+
+    <div class="main-container">
+        <div class="shorten-card">
+            <header class="card-header">
+                <h1>Shorten URL</h1>
+                <p class="subtitle">縮短你的網址！</p>
+            </header>
+
+            <main class="card-body">
+                <div class="input-group">
+                    <input type="url" id="longUrl" placeholder="貼上您的長網址..." aria-label="長網址輸入框">
+                    <button id="shortenBtn">縮短網址</button>
+                </div>
+
+                <div class="result-group hidden" id="result">
+                    <input type="text" id="shortUrl" readonly aria-label="短網址結果">
+                    <button id="copyBtn">複製</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    // 這部分只是為了演示效果，並非實際功能
+    const shortenBtn = document.getElementById('shortenBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const resultGroup = document.getElementById('result');
+    const longUrlInput = document.getElementById('longUrl');
+    const shortUrlInput = document.getElementById('shortUrl');
+
+    shortenBtn.addEventListener('click', () => {
+        if (longUrlInput.value) {
+
+            fetch("/project/url_shorten", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    long_url: longUrlInput.value,
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if ("short_url" in data){
+                    shortUrlInput.value = data.short_url;
+                } else {
+                    shortUrlInput.value = "生成短網址失敗";
+                }
+                resultGroup.classList.remove('hidden');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('縮短網址失敗，請稍後再試。');
+            });
+        }
+    });
+
+    copyBtn.addEventListener('click', () => {
+        shortUrlInput.select();
+        document.execCommand('copy');
+        copyBtn.textContent = '已複製!';
+        setTimeout(() => {
+            copyBtn.textContent = '複製';
+        }, 2000);
+    });
+</script>
