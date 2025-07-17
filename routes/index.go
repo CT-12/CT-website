@@ -28,8 +28,8 @@ func RegisterIndexRoutes(r *gin.RouterGroup) {
 	})
 
 	// 短網址重定向
-	// GET: /short/:short_url
-	r.GET("/short/:short_url", func(ctx *gin.Context) {
+	// GET: /s/:short_url
+	r.GET("/s/:short_url", func(ctx *gin.Context) {
 		short_url := ctx.Param("short_url")
 
 		if short_url == "" {

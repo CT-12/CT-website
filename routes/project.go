@@ -38,7 +38,7 @@ func RegisterProjectRoutes(r *gin.RouterGroup) {
 		} 
 
 		ctx.JSON(http.StatusOK, gin.H{
-			"short_url": fmt.Sprintf("https://%s/short/%s", config.Domain_name, short_url),
+			"short_url": fmt.Sprintf("https://%s/s/%s", config.Domain_name, short_url),
 		})
 	})
 }
